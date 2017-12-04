@@ -4,6 +4,7 @@
 
 import mmh3
 import os
+import argparse
 
 class BloomFilter:
 
@@ -34,19 +35,28 @@ class BloomFilter:
         else:
             print("Username {0} not available.".format(username))
 
-# Create bloom filter object
-bloom_filter = BloomFilter(100, 1)
+def main():
+    # Create bloom filter object
+    bloom_filter = BloomFilter(100, 1)
 
-# Open the file with the usernames
-file_path = os.path.dirname(os.path.realpath(__file__)) + "/names/test-names.txt"
+    # Open the file with the usernames
+    file_path = os.path.dirname(os.path.realpath(__file__)) + "/names/test-names.txt"
 
-# Read in the names from the txt file line by line
-with open(file_path) as unavailable_usernames:
-    for name in unavailable_usernames:
-        bloom_filter.add_to_bit_array(name.rstrip('\n'))
+    # Read in the names from the txt file line by line
+    with open(file_path) as unavailable_usernames:
+        for name in unavailable_usernames:
+            bloom_filter.add_to_bit_array(name.rstrip('\n'))
 
+    parser = argparse.ArgumentParser()
 
+    parser.add_argument("username", help="Username to check")
 
-bloom_filter.check_availability("Abagael")
-bloom_filter.check_availability("Cameron")
-bloom_filter.check_availability("Cam")
+    args = parser.parse_args()
+
+    if args.username:
+        bloom_filter.check_availability(args.username)
+    else:
+        print("Unknown option. Enter a valid option.")
+
+if __name__ == '__main__':
+    main()

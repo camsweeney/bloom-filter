@@ -7,6 +7,8 @@ Cameron Sweeney
 
 Run `pip install -r requirements.txt`
 
-Run `python bloom-filter.py`
 
-###
+
+### Running the code
+
+Run `python bloom-filter.py`
