@@ -11,4 +11,4 @@ Run `pip install -r requirements.txt`
 
 ### Running the code
 
-Run `python bloom-filter.py`
+Run `python bloom-filter.py "username"`

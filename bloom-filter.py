@@ -19,7 +19,7 @@ class BloomFilter:
 
         for seed_count in range(self.number_hashes):
             result = mmh3.hash(username, seed_count) % self.bit_array_size
-            print("{0}'s hash value is {1}".format(username, result))
+
             self.bit_array[result] = 1
 
     # Check if the username is in the bit_array
@@ -36,11 +36,11 @@ class BloomFilter:
             print("Username {0} not available.".format(username))
 
 def main():
-    # Create bloom filter object
-    bloom_filter = BloomFilter(100, 1)
+    # Create bloom filter object. There are 7944 names in the all-names text file
+    bloom_filter = BloomFilter(8000, 1)
 
     # Open the file with the usernames
-    file_path = os.path.dirname(os.path.realpath(__file__)) + "/names/test-names.txt"
+    file_path = os.path.dirname(os.path.realpath(__file__)) + "/names/all-names.txt"
 
     # Read in the names from the txt file line by line
     with open(file_path) as unavailable_usernames:
